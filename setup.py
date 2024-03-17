@@ -4,7 +4,7 @@ with open('README.md') as f:
 
 setup(
     name='colornamespace',
-    version='0.8.0',
+    version='0.8.1',
     description='Personal color name semantics mapping application',
     long_description=long_description,
     long_description_content_type="text/markdown",
