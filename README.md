@@ -1,0 +1,3 @@
+# colornamespace
+
+colornamespace is a GUI program that maps your personal color semantics. It began as a consistent disagreement between my partner and myself about where the line is between "green" and "blue". We then discovered that we disagreed about the line between other colors as well. So I wrote this program to map out and visualize the differences in our color naming intuitions. The program displays a random color and you can choose which of twelve color words best describes that color. After you have categorized a few hundred colors, the boundaries of your color naming intuitions can be visualized in RGB space and HSV space.
