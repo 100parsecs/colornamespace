@@ -6,3 +6,5 @@
 /colornamespace.egg-info
 /dist
 /test.py
+/build
+/.vscode
