@@ -2,3 +2,6 @@
 /*.json
 /text.txt
 /__pycache__
+/colornamespace/__pycache__
+/colornamespace.egg-info
+/dist

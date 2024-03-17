@@ -17,5 +17,5 @@ setup(
     packages=find_packages(),
     install_requires=["numpy","scipy","matplotlib","pillow"],
     python_requires=">=3.9",
-    entry_points={'gui_scripts':['ColorNameMapper = colornamespace:__main__:main']}
+    entry_points={'gui_scripts':['ColorNameMapper = colornamespace.__main__:main']}
 )
