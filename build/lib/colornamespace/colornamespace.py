@@ -15,13 +15,13 @@ __fixedcolors = product((0,5,15,178,240,250,255),repeat=3)
 BG = '#444444'
 FG = '#FFFFFF'
 
-def _get_resource(filename,anchor='colornamespace'):
+def __get_resource(filename,anchor='colornamespace'):
     try:
         from importlib.resources import files, as_file
     except ImportError:
         pass
     else:
-        return str(files(anchor).joinpath(filename))
+        return as_file(files(anchor).joinpath(filename))
     try:
         from importlib.resources import path
     except ImportError:
@@ -34,9 +34,6 @@ def _get_resource(filename,anchor='colornamespace'):
         pass
     else:
         return resource_filename(anchor,filename)
-    
-    return anchor + "/" + filename
-
 
 
 def randomcolor() -> str:
@@ -174,40 +171,40 @@ class ColorNameMapper(tk.Tk):
         self._control_panel = tk.Frame(self,bg=BG)
         self._startbutton = tk.Button(self._control_panel,command=lambda:self._review(0),bg=BG,fg=FG)
         try:
-            self._startimg = Image.open(_get_resource('icons/tostartarrow.png'))
-            self._startimg = ImageTk.PhotoImage(self._startimg.resize((18,18),Image.BILINEAR))
+            self._startimg = Image.open(__get_resource('icons/tostartarrow.png'))
+            self._startimg = ImageTk.PhotoImage(self._startimg.resize((18,18),Image.ANTIALIAS))
             self._startbutton.config(image=self._startimg)
-        except Exception as err:
+        except Exception:
             self._startbutton.config(text='Start')
         
         self._backbutton = tk.Button(self._control_panel,command=lambda:self._review(dir=-1),bg=BG,fg=FG)
         try:
-            self._backimg = Image.open(_get_resource('icons/leftarrow.png'))
-            self._backimg = ImageTk.PhotoImage(self._backimg.resize((18,18),Image.BILINEAR))
+            self._backimg = Image.open(__get_resource('leftarrow.png'))
+            self._backimg = ImageTk.PhotoImage(self._backimg.resize((18,18),Image.ANTIALIAS))
             self._backbutton.config(image=self._backimg)
         except Exception:
             self._backbutton.config(text='Prev')
         
         self._endbutton = tk.Button(self._control_panel,command=lambda:self._review(-1),bg=BG,fg=FG)
         try:
-            self._endimg = Image.open(_get_resource('icons/toendarrow.png'))
-            self._endimg = ImageTk.PhotoImage(self._endimg.resize((18,18),Image.BILINEAR))
+            self._endimg = Image.open(__get_resource('toendarrow.png'))
+            self._endimg = ImageTk.PhotoImage(self._endimg.resize((18,18),Image.ANTIALIAS))
             self._endbutton.config(image=self._endimg)
         except Exception:
             self._endbutton.config(text='End')
         
         self._fwdbutton = tk.Button(self._control_panel,command=lambda:self._review(dir=1),bg=BG,fg=FG)
         try:
-            self._fwdimg = Image.open(_get_resource('icons/rightarrow.png'))
-            self._fwdimg = ImageTk.PhotoImage(self._fwdimg.resize((18,18),Image.BILINEAR))
+            self._fwdimg = Image.open(__get_resource('rightarrow.png'))
+            self._fwdimg = ImageTk.PhotoImage(self._fwdimg.resize((18,18),Image.ANTIALIAS))
             self._fwdbutton.config(image=self._fwdimg)
         except Exception:
             self._fwdbutton.config(text='Next')
         
         self._undobutton = tk.Button(self._control_panel,command=self._undo,bg=BG,fg=FG)
         try:
-            self._undoimg = Image.open(_get_resource('icons/undoarrow.png'))
-            self._undoimg = ImageTk.PhotoImage(self._undoimg.resize((18,18),Image.BILINEAR))
+            self._undoimg = Image.open(__get_resource('undoarrow.png'))
+            self._undoimg = ImageTk.PhotoImage(self._undoimg.resize((18,18),Image.ANTIALIAS))
             self._undobutton.config(image=self._undoimg)
         except Exception:
             self._undobutton.config(text='Undo')
@@ -291,8 +288,8 @@ class ColorNameMapper(tk.Tk):
         self._plot_controls = tk.Frame(self._plotframe,bg=BG)
         self._refreshbutton = tk.Button(self._plot_controls,text='Refresh',command=self._display_map,bg=BG,fg=FG)
         try:
-            self._refreshimg = Image.open(_get_resource('icons/refresh_reload_icon.png'))
-            self._refreshimg = ImageTk.PhotoImage(self._refreshimg.resize((24,24),Image.BILINEAR))
+            self._refreshimg = Image.open(__get_resource('refresh_reload_icon.png'))
+            self._refreshimg = ImageTk.PhotoImage(self._refreshimg.resize((24,24),Image.ANTIALIAS))
             self._refreshbutton.config(image=self._refreshimg)
         except Exception:
             self._refreshbutton.config(text='Undo')
@@ -648,3 +645,6 @@ class ColorNameMapper(tk.Tk):
 
     def _colorpeek_off(self,event=None):
         self._colorpeek_viewer.config(bg=BG)
+
+
+        
