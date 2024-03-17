@@ -1,0 +1,3 @@
+include license.md README.md
+graft icons
+global-exclude *.csv .DS_Store *.json *.py[cod]
